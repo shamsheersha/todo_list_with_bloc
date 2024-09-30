@@ -1,20 +1,26 @@
 part of 'todo_bloc.dart';
 
-
 abstract class TodoEvent extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-class FetchTodos extends TodoEvent{}
+class  LoadTodos extends TodoEvent {}
 
-class AddTodo extends TodoEvent{
-  final Todo todo;
+class AddTodo extends TodoEvent {
+  final String title;
+  final String description;
 
-  AddTodo({required this.todo});
+  AddTodo({required this.title, required this.description});
 
   @override
-  List<Object> get props => [todo];
+  List<Object?> get props => [title, description];
 }
 
+class DeleteTodo extends TodoEvent {
+  final String id;
 
+  DeleteTodo(this.id);
+  @override
+  List<Object?> get props => [id];
+}

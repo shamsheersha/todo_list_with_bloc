@@ -9,13 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:todo_list_with_bloc/main.dart';
+import 'package:todo_list_with_bloc/services/api_service.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    final ApiService apiService = ApiService();
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(
+      apiService: apiService,
+    ));
 
     // Verify that our counter starts at 0.
+
     expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);
 

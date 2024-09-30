@@ -35,15 +35,25 @@ class HomeScreen extends StatelessWidget {
                 itemCount: state.todos.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(state.todos[index].title),
-                    subtitle: Text(state.todos[index].description),
+                    title: Text(state.todos[index]['title']),
+                    subtitle: Text(state.todos[index]['description']),
+                    trailing: IconButton(
+                        onPressed: () {
+                          context.read<TodoBloc>().add(DeleteTodo(state.todos[index]['_id']));
+                        },
+                        icon: Icon(Icons.delete)),
                   );
                 },
               );
-            }else if(state is TodoError){
-              return Center(child: Text(state.message),);
+            } else if (state is TodoError) {
+              return Center(
+                child: Text(state.message),
+              );
+            } else {
+              return const Center(
+                child: Text('No Todos'),
+              );
             }
-            return Center(child: Text('Something error'),);
           },
         ),
         floatingActionButton: FloatingActionButton.extended(
