@@ -28,20 +28,32 @@ class HomeScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is TodoLoading) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.pink,
+                ),
               );
             } else if (state is TodoLoaded) {
               return ListView.builder(
                 itemCount: state.todos.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(state.todos[index]['title']),
-                    subtitle: Text(state.todos[index]['description']),
-                    trailing: IconButton(
-                        onPressed: () {
-                          context.read<TodoBloc>().add(DeleteTodo(state.todos[index]['_id']));
-                        },
-                        icon: Icon(Icons.delete)),
+                  return Container(
+                    margin:const EdgeInsets.symmetric(vertical: 8,horizontal: 16),
+                    decoration: BoxDecoration(
+                      color: Colors.pink[500],
+                      borderRadius: BorderRadius.circular(15)
+                    ),
+                    child: ListTile(
+                      title: Text(state.todos[index]['title'],style:const TextStyle(color: Colors.black),),
+                      subtitle: Text(state.todos[index]['description'],style:const TextStyle(color: Colors.black),),
+                      trailing: IconButton(
+                          onPressed: () {
+                            context
+                                .read<TodoBloc>()
+                                .add(DeleteTodo(state.todos[index]['_id']));
+                          },
+                          icon: const Icon(Icons.delete,color: Colors.black,)),
+                          
+                    ),
                   );
                 },
               );

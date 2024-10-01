@@ -1,7 +1,6 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:todo_list_with_bloc/model/todo_model.dart';
 import 'package:todo_list_with_bloc/services/api_service.dart';
 
 part 'todo_event.dart';
