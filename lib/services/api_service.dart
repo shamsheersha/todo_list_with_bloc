@@ -10,7 +10,9 @@ class ApiService {
   Future addTodo(String title, String description) async {
     final response = await http.post(
       Uri.parse(url),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Authorization' : 'Bearer 2a6e5977-926f-4810-8c31-acd61b04666b',
+        'Content-Type': 'application/json'},
       body: jsonEncode(
           {'title': title, 'description': description, 'is_completed': false}),
     );
@@ -26,7 +28,10 @@ class ApiService {
 
   Future<List> fetchTodos() async {
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(Uri.parse(url),headers: {
+        'Authorization' : 'Bearer 2a6e5977-926f-4810-8c31-acd61b04666b',
+        'Content-Type': 'application/json',
+      });
 
       if (response.statusCode == 200) {
         log(response.statusCode.toString());

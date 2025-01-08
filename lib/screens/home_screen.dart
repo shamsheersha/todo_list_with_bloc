@@ -14,15 +14,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('ToDo List', style: headLine),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  size: 28,
-                  color: iconsColor,
-                )),
-          ],
+          
         ),
         body: BlocBuilder<TodoBloc, TodoState>(
           builder: (context, state) {
@@ -83,3 +75,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+

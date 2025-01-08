@@ -13,7 +13,6 @@ class AddingTodo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todoBloc = context.read<TodoBloc>();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -73,7 +72,7 @@ class AddingTodo extends StatelessWidget {
               onPressed: () {
                 if (formKey.currentState?.validate() ?? false) {
                   
-                  todoBloc.add(AddTodo(
+                  context.read<TodoBloc>().add(AddTodo(
                     title: titleController.text,
                     description: descriptionController.text,
                   ));
